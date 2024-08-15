@@ -3,6 +3,7 @@ import { selectAllPost } from './postsSlice'
 import { useSelector} from 'react-redux'
 import PostAuthor from './PostAuthor'
 import TimeAgo from './TimeAgo'
+import ReactionButtons from './ReactionButton'
 
 const PostList = () => {
     const posts = useSelector(selectAllPost)
@@ -21,6 +22,9 @@ const PostList = () => {
                     <TimeAgo timestamp={post.date}/>
                 </span>
             </div>
+            <span className='text-sm font-semibold tracking-wider'>
+                <ReactionButtons post={post}/>
+            </span>
         </article>
     ))
 
