@@ -1,5 +1,5 @@
 import React from 'react'
-import { selectAllPost } from './posts/postsSlice'
+import { selectAllPost } from './postsSlice'
 import {
     useSelector
 } from 'react-redux'

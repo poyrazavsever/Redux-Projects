@@ -1,9 +1,8 @@
 import {useState} from 'react'
-import { useDispatch } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit'; // custom id üretmeye yarıyor. İşlevsel :)
+import { useDispatch, useSelector } from 'react-redux';
 
-import {postAdded} from "./posts/postsSlice"
-
+import {postAdded} from "./postsSlice"
+import { selectAllUsers } from '../users/usersSlice';
 
 const AddPostForm = () => {
 
@@ -11,21 +10,34 @@ const AddPostForm = () => {
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('')
+  const [userId, setUserId] = useState('')
+
+  const users = useSelector(selectAllUsers);
 
   const onTitleChanged = e => setTitle(e.target.value)
   const onContentChanged = e => setContent(e.target.value)
+  const onAuthorChanged = e => setUserId(e.target.value)
 
   const onSavePostClick = () => {
     if (title && content) {
       dispatch(
-        postAdded(title, content)
+        postAdded(title, content, userId)
       )
 
       setTitle('')
       setContent('')
+      setUserId('')
 
     }
   }
+
+  const canSave = Boolean(title) && Boolean(content) && Boolean(userId)
+
+  const usersOptions = users.map((user) => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ))
 
   return (
     <div className='flex flex-col items-center gap-4 my-24'>
@@ -47,8 +59,18 @@ const AddPostForm = () => {
         </div>
 
         <div className='w-full flex flex-col items-start gap-2'>
+          <label htmlFor="postAuthor" className="text-zinc-800 text-xs font-semibold uppercase tracking-widest">Select Author:</label>
+          <select id="postAuthor" value={userId} onChange={onAuthorChanged} className='w-full px-4 py-2 bg-neutral-950 opacity-80 focus:outline-none border-neutral-950 placeholder:text-sm text-white'>
+            <option value=""></option>
+            {usersOptions}
+          </select>
+        </div>
+
+        
+
+        <div className='w-full flex flex-col items-start gap-2'>
           <label htmlFor="postTitle" className="text-zinc-800 text-xs font-semibold uppercase tracking-widest">Post Content:</label>
-          <input 
+          <textarea 
             type="text"
             id='postTitle'
             name='postTitle'
@@ -58,7 +80,7 @@ const AddPostForm = () => {
             />
         </div>
 
-        <button type='button' className="flex font-medium hover:bg-neutral-700 items-center text-sm gap-2 justify-center w-full px-4 py-3 rounded-sm bg-neutral-800 text-neutral-200 tracking-wider transition-all" onClick={onSavePostClick}>Save Post</button>
+        <button type='button' className="flex font-medium hover:bg-neutral-700 items-center text-sm gap-2 justify-center w-full px-4 py-3 rounded-sm bg-neutral-800 text-neutral-200 tracking-wider transition-all disabled:bg-zinc-400" onClick={onSavePostClick} disabled={!canSave}>Save Post</button>
 
       </form>
     </div>
