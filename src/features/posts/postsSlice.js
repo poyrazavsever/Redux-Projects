@@ -1,5 +1,11 @@
-import { createSlice, nanoid, createAsyncThunk} from "@reduxjs/toolkit";
-import { sub } from "date-fns"
+import {
+    createSlice,
+    nanoid,
+    createAsyncThunk
+} from "@reduxjs/toolkit";
+import {
+    sub
+} from "date-fns"
 import axios from "axios";
 
 const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
@@ -15,6 +21,15 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
     try {
         const response = await axios.get(POSTS_URL)
         return [...response.data]
+    } catch (err) {
+        return err.message
+    }
+})
+
+export const addNewPost = createAsyncThunk('posts/addNewPost', async (initialPost) => {
+    try {
+        const response = await axios.post(POSTS_URL, initialPost)
+        return response.data
     } catch (err) {
         return err.message
     }
@@ -49,11 +64,14 @@ const postsSlice = createSlice({
         },
 
         reactionAdded(state, action) {
-            const {postId, reaction} = action.payload
+            const {
+                postId,
+                reaction
+            } = action.payload
             const existingPost = state.posts.find(post => post.id === postId)
-            if(existingPost) {
+            if (existingPost) {
                 existingPost.reactions[reaction]++
-            } 
+            }
         }
     },
     extraReducers(builder) {
@@ -66,7 +84,9 @@ const postsSlice = createSlice({
                 // Adding date and reactions
                 let min = 1;
                 const loadedPosts = action.payload.map(post => {
-                    post.date = sub(new Date(), { minutes: min++ }).toISOString();
+                    post.date = sub(new Date(), {
+                        minutes: min++
+                    }).toISOString();
                     post.reactions = {
                         thumbsUp: 0,
                         wow: 0,
@@ -92,7 +112,8 @@ export const getPostsStatus = (state) => state.posts.status;
 export const getPostError = (state) => state.posts.error;
 
 export const {
-    postAdded, reactionAdded
+    postAdded,
+    reactionAdded
 } = postsSlice.actions
 
 export default postsSlice.reducer
