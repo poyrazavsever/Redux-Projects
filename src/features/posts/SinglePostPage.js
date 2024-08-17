@@ -27,7 +27,7 @@ const SinglePostPage = () => {
                 <h2 className='text-xl font-medium tracking-wider'>{post.title}</h2>
                 <p>{post.body}</p>
                 <p className="postCredit">
-                    <Link to={`/post/edit/${post.id}`}>Edit Post</Link>
+                    <Link to={`/post/edit/${post.id}`} className='py-2 px-4 bg-zinc-400 rounded-md font-semibold hover:bg-zinc-200 transition-all'>Edit Post</Link>
                     <div className='flex justify-between items-center w-full mt-2'>
                     <span className='text-sm font-semibold tracking-wider'>
                         <PostAuthor userId={post.userId}/>

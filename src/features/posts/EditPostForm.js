@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectPostById, updatePost } from './postsSlice'
+import { selectPostById, updatePost, deletePost } from './postsSlice'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { selectAllUsers } from "../users/usersSlice";
@@ -58,21 +58,21 @@ const EditPostForm = () => {
         >{user.name}</option>
     ))
 
-    // const onDeletePostClicked = () => {
-    //     try {
-    //         setRequestStatus('pending')
-    //         dispatch(deletePost({ id: post.id })).unwrap()
+    const onDeletePostClicked = () => {
+        try {
+            setRequestStatus('pending')
+            dispatch(deletePost({ id: post.id })).unwrap()
 
-    //         setTitle('')
-    //         setContent('')
-    //         setUserId('')
-    //         navigate('/')
-    //     } catch (err) {
-    //         console.error('Failed to delete the post', err)
-    //     } finally {
-    //         setRequestStatus('idle')
-    //     }
-    // }
+            setTitle('')
+            setContent('')
+            setUserId('')
+            navigate('/')
+        } catch (err) {
+            console.error('Failed to delete the post', err)
+        } finally {
+            setRequestStatus('idle')
+        }
+    }
 
     return (
         <section className='flex flex-col items-center gap-4 my-24'>
@@ -120,13 +120,13 @@ const EditPostForm = () => {
                     Save Post
                 </button>
 
-                {/* <button
+                <button
                     type="button"
                     onClick={onDeletePostClicked}
                     className="flex font-medium hover:bg-red-400 items-center text-sm gap-2 justify-center w-full px-4 py-3 rounded-sm bg-red-800 text-neutral-200 tracking-wider transition-all"
                 >
                     Delete Post
-                </button> */}
+                </button>
 
             </form>
         </section>
