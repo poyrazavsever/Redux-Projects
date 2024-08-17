@@ -36,7 +36,7 @@ const todoSlice = createSlice({
 
         statusAdded(state, action) {
             const {todoId, statu} = action.payload
-            const existingTodo = state.find(todo => todo.id = todoId)
+            const existingTodo = state.find(todo => todo.id === todoId)
 
             if(existingTodo) {
                 if(existingTodo.status[statu] === true) {
@@ -49,7 +49,7 @@ const todoSlice = createSlice({
 
         categoryAdded(state, action) {
             const {todoId, category} = action.payload
-            const existingTodo = state.find(todo => todo.id = todoId)
+            const existingTodo = state.find(todo => todo.id === todoId)
 
             if(existingTodo) {
                 if(existingTodo.categoryies[category] === true) {
@@ -59,6 +59,27 @@ const todoSlice = createSlice({
                 }
             }
         },
+
+        todoDeleted(state,action) {
+            const {todoId} = action.payload
+            const existingTodo = state.find(todo => todo.id === todoId)
+            if (existingTodo) {
+                return state.filter((todo) => todo.id !==todoId)
+            }
+        },
+
+        todoUpdated(state, action) {
+            const {todoId, title, content} = action.payload
+            const existingTodo = state.find(todo => todo.id === todoId)
+
+            if(existingTodo) {
+                existingTodo.title = title;
+                existingTodo.content = content;
+                existingTodo.date = new Date().toISOString()
+
+                return state.filter((todo) => todo.id !==todoId)
+            }
+        }
     }
 })
 
