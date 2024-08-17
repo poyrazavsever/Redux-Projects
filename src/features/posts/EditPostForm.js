@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectPostById, updatePost, deletePost } from './postsSlice'
+import { selectPostById, updatePost } from './postsSlice'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { selectAllUsers } from "../users/usersSlice";
@@ -58,59 +58,76 @@ const EditPostForm = () => {
         >{user.name}</option>
     ))
 
-    const onDeletePostClicked = () => {
-        try {
-            setRequestStatus('pending')
-            dispatch(deletePost({ id: post.id })).unwrap()
+    // const onDeletePostClicked = () => {
+    //     try {
+    //         setRequestStatus('pending')
+    //         dispatch(deletePost({ id: post.id })).unwrap()
 
-            setTitle('')
-            setContent('')
-            setUserId('')
-            navigate('/')
-        } catch (err) {
-            console.error('Failed to delete the post', err)
-        } finally {
-            setRequestStatus('idle')
-        }
-    }
+    //         setTitle('')
+    //         setContent('')
+    //         setUserId('')
+    //         navigate('/')
+    //     } catch (err) {
+    //         console.error('Failed to delete the post', err)
+    //     } finally {
+    //         setRequestStatus('idle')
+    //     }
+    // }
 
     return (
-        <section>
-            <h2>Edit Post</h2>
+        <section className='flex flex-col items-center gap-4 my-24'>
+            <h2 className='text-xl font-medium tracking-wider'>Edit Post</h2>
+
             <form>
-                <label htmlFor="postTitle">Post Title:</label>
-                <input
-                    type="text"
-                    id="postTitle"
-                    name="postTitle"
-                    value={title}
-                    onChange={onTitleChanged}
-                />
-                <label htmlFor="postAuthor">Author:</label>
-                <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
-                    <option value=""></option>
-                    {usersOptions}
-                </select>
-                <label htmlFor="postContent">Content:</label>
-                <textarea
-                    id="postContent"
-                    name="postContent"
-                    value={content}
-                    onChange={onContentChanged}
-                />
+
+                <div className='w-full flex flex-col items-start gap-2'>
+                    <label htmlFor="postTitle" className="text-zinc-800 text-xs font-semibold uppercase tracking-widest">Post Title:</label>
+                    <input
+                        type="text"
+                        id="postTitle"
+                        name="postTitle"
+                        value={title}
+                        onChange={onTitleChanged}
+                        className='w-full px-4 py-2 bg-neutral-950 opacity-80 focus:outline-none border-neutral-950 placeholder:text-sm placeholder:tracking-wide placeholder:text-zinc-500 text-white'
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor="postAuthor" className="text-zinc-800 text-xs font-semibold uppercase tracking-widest">Author:</label>
+                    <select id="postAuthor" value={userId} onChange={onAuthorChanged} className='w-full px-4 py-2 bg-neutral-950 opacity-80 focus:outline-none border-neutral-950 placeholder:text-sm text-white'>
+                        <option value=""></option>
+                        {usersOptions}
+                    </select>
+                </div>
+
+                <div>
+                    <label htmlFor="postContent" className="text-zinc-800 text-xs font-semibold uppercase tracking-widest">Content:</label>
+                    <textarea
+                        id="postContent"
+                        name="postContent"
+                        value={content}
+                        onChange={onContentChanged}
+                        className='w-full px-4 py-2 bg-neutral-950 opacity-80 focus:outline-none border-neutral-950 placeholder:text-sm placeholder:tracking-wide placeholder:text-zinc-500 text-white h-64'
+                    />
+                    </div>
+
                 <button
                     type="button"
                     onClick={onSavePostClicked}
                     disabled={!canSave}
+                    className="flex font-medium hover:bg-neutral-700 items-center text-sm gap-2 justify-center w-full px-4 py-3 rounded-sm bg-neutral-800 text-neutral-200 tracking-wider transition-all disabled:bg-zinc-400"
                 >
                     Save Post
                 </button>
-                <button className="deleteButton"
+
+                {/* <button
                     type="button"
                     onClick={onDeletePostClicked}
+                    className="flex font-medium hover:bg-red-400 items-center text-sm gap-2 justify-center w-full px-4 py-3 rounded-sm bg-red-800 text-neutral-200 tracking-wider transition-all"
                 >
                     Delete Post
-                </button>
+                </button> */}
+
             </form>
         </section>
     )
