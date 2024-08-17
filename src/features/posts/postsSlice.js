@@ -34,7 +34,8 @@ export const updatePost = createAsyncThunk('posts/updatePost', async (initialPos
         return response.data
     } catch (err) {
         //hata mesajı;
-        return err.message;
+        // return err.message;
+        return initialPost; // only for testing redux
     }
 })
 
