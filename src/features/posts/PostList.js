@@ -8,9 +8,9 @@ const PostList = () => {
     const dispatch = useDispatch();
 
 
-    const posts = useSelector(selectAllPost)
-    const error = useSelector(getPostError)
-    const postStatus = useSelector(getPostsStatus)
+    const posts = useSelector(selectAllPost);
+    const postStatus = useSelector(getPostsStatus);
+    const error = useSelector(getPostError);
 
     useEffect(() => {
         if (postStatus === 'idle') {
@@ -31,7 +31,6 @@ const PostList = () => {
 
     return (
         <section className='flex flex-col items-center justify-center mt-16'>
-            <h2 className='text-6xl font-semibold tracking-wider underline'>Posts</h2>
             <div className='mt-8 flex flex-col items-start gap-4'>
                 {content}
             </div>
