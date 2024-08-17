@@ -21,5 +21,5 @@ Through the work I've done in this repository, I feel that I've laid a solid fou
 
 ### 📚 Resources:
 
-1. (Dave Gray)[https://www.youtube.com/watch?v=-f1iAsrkyB0&list=PL0Zuz27SZ-6M1J5I1w2-uZx36Qp6qhjKo&index=11]
-2. (React Redux CRUD app for beginners [with Hooks])(https://dev.to/sanderdebr/react-redux-crud-app-for-beginners-with-hooks-2hja)
+1. [Dave Gray](https://www.youtube.com/watch?v=-f1iAsrkyB0&list=PL0Zuz27SZ-6M1J5I1w2-uZx36Qp6qhjKo&index=11)
+2. [React Redux CRUD app for beginners [with Hooks]](https://dev.to/sanderdebr/react-redux-crud-app-for-beginners-with-hooks-2hja)
