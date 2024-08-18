@@ -15,3 +15,5 @@ A todo app is a simple application that allows users to manage a list of tasks. 
 
 ### Additional Notes
 Besides these resources, I also tried to add a lot on my own and reinforce everything I learned. I hope this is helpful. Happy coding!
+
+# [DEMO](https://redux-projects-hmyu.vercel.app/)
