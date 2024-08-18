@@ -61,8 +61,9 @@ function AddTodoForm() {
 
                 <button 
                 type='button'
-                className="flex uppercase tracking-widest text-sm font-semibold items-center justify-center w-full px-4 py-3 rounded bg-pink-600 text-white hover:bg-pink-700 transition-all"
+                className="flex uppercase tracking-widest text-sm font-semibold items-center justify-center w-full px-4 py-3 rounded bg-pink-600 text-white hover:bg-pink-700 transition-all disabled:bg-pink-200"
                 onClick={onSaveTodoClick}
+                disabled={!canSave}
                 >
                     Save
                 </button>

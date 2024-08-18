@@ -69,23 +69,23 @@ const todoSlice = createSlice({
         },
 
         todoUpdated(state, action) {
-            const {todoId, title, content} = action.payload
-            const existingTodo = state.find(todo => todo.id === todoId)
-
-            if(existingTodo) {
+            const { todoId, title, content } = action.payload;
+            const existingTodo = state.find(todo => todo.id === todoId);
+        
+            if (existingTodo) {
                 existingTodo.title = title;
                 existingTodo.content = content;
-                existingTodo.date = new Date().toISOString()
-
-                return state.filter((todo) => todo.id !==todoId)
+                existingTodo.date = new Date().toISOString();
+                // Burada sadece güncellemeyi yapıyoruz, listeyi filtrelemeye gerek yok.
             }
         }
+        
     }
 })
 
 
 export const selectAllTodos = (state) => state.todos
 
-export const {todoAdded, statusAdded, categoryAdded} = todoSlice.actions
+export const {todoAdded, statusAdded, categoryAdded, todoDeleted, todoUpdated} = todoSlice.actions
 
 export default todoSlice.reducer
