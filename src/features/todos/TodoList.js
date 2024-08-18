@@ -21,9 +21,11 @@ function TodoList() {
     ))
     
   return (
-    <div>
-        <h2 className='text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-900 to-pink-300'>Your Todos</h2>
-        <ul>{renderedTodos}</ul>
+    <div className='flex items-start justify-center mt-24 animate-card'>
+        <div>
+            <h2 className='text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-900 to-pink-300'>Your Todos</h2>
+            <ul>{renderedTodos}</ul>
+        </div>
     </div>
   )
 }

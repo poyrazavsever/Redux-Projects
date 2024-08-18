@@ -35,7 +35,7 @@ function AddTodoForm() {
 
 
   return (
-    <div className='flex items-start justify-center mt-24'>
+    <div className='flex items-start justify-center mt-24 animate-card'>
         <div className='w-80 flex flex-col items-start gap-6'>
             <h2 className='text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-900 to-pink-300'>Add New Todo!</h2>
 

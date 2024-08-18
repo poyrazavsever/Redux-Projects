@@ -4,7 +4,19 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes : {
+        card: {
+          '0%' : {opacity:0},
+          '100%': { opacity:1 }
+        }
+      },
+
+      animation: {
+        card : 'card .3s ease-in forwards'
+      },
+    },
+    
   },
   plugins: [],
 }
