@@ -38,7 +38,7 @@ const UpdateButton = ({ todo }) => {
     return (
         <div>
             <button onClick={onUpdateClick}>
-                <FaPencilAlt className='text-pink-500'/>
+                <FaPencilAlt className='text-pink-500 text-lg hover:text-pink-600 hover:rotate-12 transition-all'/>
             </button>
 
 
