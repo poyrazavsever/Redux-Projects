@@ -1,23 +1,16 @@
 import React from 'react'
 import { selectAllTodos } from './todoSlice'
 import { useSelector } from 'react-redux'
-import TimeAgo from './TimeAgo'
+import Todo from './Todo'
 
 function TodoList() {
 
     const todos = useSelector(selectAllTodos)
 
-    const renderedTodos = todos.map(todo => (
-        <li key={todo.id} className='even:bg-zinc-100 flex flex-col items-start gap-2'>
+    const orderedTodos = todos.slice().sort((a, b) => b.date.localeCompare(a.date))
 
-            <h3 className='text-lg font-bold tracking-wider'>{todo.title}</h3>
-            <p className='text-sm font-medium tracking-wider'>{todo.content}</p>
-
-            <span className='text-sm font-semibold tracking-wider'>
-                <TimeAgo timestamp={todo.date}/>
-            </span>
-
-        </li>
+    const renderedTodos = orderedTodos.map(todo => (
+        <Todo key={todo.id} todo={todo}/>
     ))
     
   return (
