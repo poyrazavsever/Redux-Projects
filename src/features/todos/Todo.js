@@ -3,6 +3,7 @@ import TimeAgo from './TimeAgo'
 import StatusButton from './StatusButton'
 import CategoryButton from './CategoryButton'
 import UpdateButton from './UpdateButton'
+import DeleteButton from './DeleteButton'
 
 function Todo({todo}) {
     
@@ -20,6 +21,7 @@ function Todo({todo}) {
             <StatusButton todo={todo}/>
             <CategoryButton todo={todo}/>
             <UpdateButton todo={todo}/>
+            <DeleteButton todo={todo}/>
 
         </div>
 
